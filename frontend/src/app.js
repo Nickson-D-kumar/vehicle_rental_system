@@ -57,23 +57,30 @@ const state = {
   modal: null,
   modalData: {}
 };
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 async function api(path, method = 'GET', data) {
   const token = sessionStorage.getItem('token') || '';
   const headers = { 'Content-Type': 'application/json' };
+
   if (token) headers['Authorization'] = 'Bearer ' + token;
-  const res = await fetch('/api' + path, {
+
+  const res = await fetch(API_BASE_URL + '/api' + path, {
     method,
     headers,
     body: data ? JSON.stringify(data) : undefined
   });
+
   let json;
+
   try {
     json = await res.json();
   } catch {
     throw new Error('Server unavailable. Check Flask and Express.');
   }
+
   if (!res.ok) throw new Error(json.error || 'Request failed');
+
   return json;
 }
 

@@ -26,7 +26,7 @@ except Exception:
 SECRET = os.environ.get('JWT_SECRET', '')
 if len(SECRET) < 32:
     SECRET = 'roam_vehicle_rental_super_secure_jwt_secret_key_2026_99a8b7c6d5e4f3a2b1'
-client = MongoClient(os.environ.get('MONGO_URI', 'mongodb+srv://nickson_d_kumar:Nick%2A123@nickson.egbyy6z.mongodb.net/?appName=Nickson'), serverSelectionTimeoutMS=5000)
+client = MongoClient(os.environ.get('MONGO_URI', 'mongodb+srv://nickson_d_kumar:Nick123@nickson.egbyy6z.mongodb.net/?appName=Nickson'), serverSelectionTimeoutMS=5000)
 db = client[os.environ.get('MONGO_DB', 'vehicle_rental')]
 
 def init_db():
